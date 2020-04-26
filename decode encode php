@@ -1,0 +1,11 @@
+google.load("language","1");T=Translator=function(){this.LastTranslated="";this.TranslateOutput="";this.NeedsTranslation=false;this.ContentLanguage="en"}
+ConvertLanguage=function(a){var r="";if(!S.isEmpty(a)){if(a.substring(0,2)=="en"){r="en"}else{r=a}};return r}
+V=Visitor={sysDefLanguage:"en",Latitude:(google.loader.ClientLocation)?google.loader.ClientLocation.latitude:null,Longitude:(google.loader.ClientLocation)?google.loader.ClientLocation.longitude:null,CountryCode:(google.loader.ClientLocation)?google.loader.ClientLocation.address.country_code:"",Country:(google.loader.ClientLocation)?google.loader.ClientLocation.address.country:"",Region:(google.loader.ClientLocation)?google.loader.ClientLocation.address.region:"",City:(google.loader.ClientLocation)?google.loader.ClientLocation.address.city:"",BrowserLanguage:(_n.language||_n.browserLanguage||this.sysDefLanguage),Language:"",isEnglish:false};V.Language=ConvertLanguage(V.BrowserLanguage);V.isEnglish=(V.Language=="en")?true:false;Translator.prototype={
+Translate:function(a,b,c,d,e){var g=this,f="";c=(c||g.ContentLanguage);if(b===c){if(typeof(e)=="function"){e.call(this,a)};g.TranslateComplete(f,e,d)}else{this.LastTranslated="";google.language.translate(a,c,b,function(f){g.TranslateComplete(f,e,d)})}},
+TranslateComplete:function(a,b,c){var d=this,el,e="";if(!a.error){e=a.translation;d.LastTranslated=e;if(c){if(S.isString(c)){el=G(c);el.innerHTML=e}else if(S.isDOMobj(c)){el=c;el.innerHTML=e}else if(S.isObject(c)&&S.jQuery){el=c.html(e)}};if(typeof(b)=="function"){b.call(this,e)}}else{}},
+TranslateContents:function(a,b,c){var d=this;c=c||this.ContentLanguage;b=b||V.Language;if(a){for(var x=0,i=a.length;x<i;x++){(function(){var e=G(a[x]).innerHTML;d.Translate(e,b,c,a[x],"")})()}}}}
+
+
+
+
+////////////////*******http://ykubnay.yn.lt**********//////////////
