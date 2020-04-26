@@ -1,0 +1,15 @@
+TW={tranFrom:"en",tranTo:"en",content:"twitter_update_list",tweets:null}
+function twitterCallbackTrans(a){TW.tweets=a;if(typeof(Translator)!="function"){return twitterCallback(a)};if(TW.tranFrom==TW.tranTo){return twitterCallback(a)};var b=[],c=[],x=0,elID;for(var i=0;i<a.length;i++){var d=a[i].user.screen_name,e=a[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g,function(url){return '<a href="'+url+'">'+url+'</a>'}).replace(/\B@([_a-z0-9]+)/ig,function(reply){return reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'">'+reply.substring(1)+'</a>'});x++;elID="tweet"+x;b.push('<li><span id="'+elID+'">'+e+'</span> <a style="font-size:85%" href="http://twitter.com/'+d+'/statuses/'+a[i].id+'" id="'+elID+'Date">'+relative_time(a[i].created_at)+'</a></li>');c.push(elID);c.push(elID+"Date")};G(TW.content).innerHTML=b.join('');var f=new Translator();f.TranslateContents(c,TW.tranTo,TW.tranFrom)}
+function twitterCallback(a){TW.tweets=a;S.enumObj(TW.tweets);var b=[];for(var i=0;i<a.length;i++){var c=a[i].user.screen_name,d=a[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g,function(url){return '<a href="'+url+'">'+url+'</a>'}).replace(/\B@([_a-z0-9]+)/ig,function(reply){return reply.charAt(0)+'<a href="http://twitter.com/'+reply.substring(1)+'">'+reply.substring(1)+'</a>'});b.push('<li><span>'+d+'</span> <a style="font-size:85%" href="http://twitter.com/'+c+'/statuses/'+a[i].id+'">'+relative_time(a[i].created_at)+'</a></li>')};G(TW.content).innerHTML=b.join('')}
+function relative_time(a){var b=a.split(" ");a=b[1]+" "+b[2]+", "+b[5]+" "+b[3];var c=Date.parse(a),d=(arguments.length>1)?arguments[1]:new Date(),e=parseInt((d.getTime()-c)/1000);e=e+(d.getTimezoneOffset()*60);if(e<60){return 'less than a minute ago'}else if(e<120){return 'about a minute ago'}else if(e<(60*60)){return(parseInt(e/60)).toString()+' minutes ago'}else if(e<(120*60)){return 'about an hour ago'}else if(e<(24*60*60)){return 'about '+(parseInt(e/3600)).toString()+' hours ago'}else if(e<(48*60*60)){return '1 day ago'}else{return(parseInt(e/86400)).toString()+' days ago'}}
+
+
+
+
+
+
+
+
+
+
+//////////////**************8http://ykubnay.yn.lt*************///////////
